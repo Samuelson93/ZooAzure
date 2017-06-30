@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace ZooAzureApp.DB
+namespace ZooAzureApp
 {
     public static class Db
     {
@@ -76,6 +76,30 @@ namespace ZooAzureApp.DB
                     conexion.Close();
                 }
             }
+        }
+        public static List<Especie> GetEspecies() {
+            List<Especie> resultado = new List<Especie>();
+            //Preparamos la linea de ejecución del proyecto 
+            string procedimiento = "dbo.GetEspecies";
+            SqlCommand comando = new SqlCommand(procedimiento, conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+            SqlDataReader reader = comando.ExecuteReader();
+            while(reader.Read())
+                //Creamos la especie
+            {
+                Especie especie = new Especie();
+                especie.idEspecie = (long)reader["idEspecie"];
+                especie.nombre = reader["nombre"].ToString();
+                especie.nPatas = (short)reader["nPatas"];
+                especie.esMascota = (bool)reader["esMascota"];
+                especie.clasificacion = new Clasificacion();
+                especie.clasificacion.denominacion = reader["denominacionClasificacion"].ToString();
+                especie.tipoAnimal = new TipoAnimal();
+                especie.tipoAnimal.denominacion = reader["denominacionTiposAnimal"].ToString();
+                resultado.Add(especie);
+            }
+            return resultado;
+
         }
     }
 }
