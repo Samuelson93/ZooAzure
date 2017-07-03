@@ -259,8 +259,14 @@
     <Content Include="assets\js\moment.min.js" />
     <Content Include="assets\js\prueba.js" />
     <Content Include="assets\js\sweetalert2.js" />
+    <Content Include="especiesCrear.html" />
+    <Content Include="especiesDetalle.html" />
+    <Content Include="especiesEditar.html" />
     <Content Include="Global.asax" />
-    <Content Include="index.html" />
+    <Content Include="especies.html" />
+    <Content Include="Js\especieDetalle.js" />
+    <Content Include="Js\especiesCrear.js" />
+    <Content Include="Js\especiesEditar.js" />
     <Content Include="Plantilla\calendar.html" />
     <Content Include="Plantilla\charts.html" />
     <Content Include="Plantilla\components\buttons.html" />
@@ -380,7 +386,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Js\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
