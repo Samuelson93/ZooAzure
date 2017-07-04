@@ -299,6 +299,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ClasificacionController.cs" />
     <Compile Include="Controllers\EspeciesController.cs" />
     <Compile Include="DB\Db.cs" />
     <Compile Include="Global.asax.cs">

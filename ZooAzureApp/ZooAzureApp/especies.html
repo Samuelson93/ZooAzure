@@ -312,6 +312,12 @@
                             <div class="card">
                                 <div class="content">
                                     <div class="toolbar">
+                                        <select id="filtro">
+                                            <option>Filtrar por</option>
+                                            <option>Clasificación</option>
+                                            <option>Tipo Animal</option>
+                                        </select>
+
                                         <button type="button" id="btnCrear" class="btn btn-primary btn-fill btn-wd">Crear Especie</button>
                                     </div>
                                     <div class="fresh-datatables">
@@ -570,6 +576,23 @@
 
 
 		    }
+		}
+
+		function filtro(){
+		    $.get(`/api/clasificaciones/`, function (respuesta, estado) {
+
+		        // COMPRUEBO EL ESTADO DE LA LLAMADA
+		        if (estado === 'success') {
+		            // SI LLEGO HASTA AQUÍ QUIERE DECIR
+		            // QUE EN 'RESPUESTA' TENGO LA INFO
+		            $('#nombre').val(respuesta.data[0].nombre);
+		            $('#clasificacion').val(respuesta.data[0].clasificacion.denominacion);
+		            $('#tipoAnimal').val(respuesta.data[0].tipoAnimal.denominacion);
+		            $('#nPatas').val(respuesta.data[0].nPatas);
+		            $('#esMascota').val(respuesta.data[0].esMascota);
+
+		        }
+		    });
 		}
 
 
