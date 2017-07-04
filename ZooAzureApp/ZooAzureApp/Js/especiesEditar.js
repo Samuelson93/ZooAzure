@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
 
     // DEFINO LA FUNCIÓN QUE CONSULTARÁ LOS DATOS DEL API
-    function cargarDetalle() {
+    function editar() {
 
         var id = window.location.search.substring(1).split('=')[1];
 
@@ -12,16 +12,16 @@
             if (estado === 'success') {
                 // SI LLEGO HASTA AQUÍ QUIERE DECIR
                 // QUE EN 'RESPUESTA' TENGO LA INFO
-
-
-                $('#nombre').html(respuesta.data[0].nombre);
-                $('#clasificacion').html(respuesta.data[0].clasificacion.denominacion);
-                $('#tipoAnimal').html(respuesta.data[0].tipoAnimal.denominacion);
-                $('#nPatas').html(respuesta.data[0].nPatas);
-                $('#esMascota').html(respuesta.data[0].esMascota);
+                $('#nombre').val(respuesta.data[0].nombre);
+                $('#clasificacion').val(respuesta.data[0].clasificacion.denominacion);
+                $('#tipoAnimal').val(respuesta.data[0].tipoAnimal.denominacion);
+                $('#nPatas').val(respuesta.data[0].nPatas);
+                $('#esMascota').val(respuesta.data[0].esMascota);
+                
             }
         });
     };
+
 
     // FUNCIÓN PARA VOLVER AL LISTADO
     $('#btnCancelar').click(function () {
@@ -39,7 +39,11 @@
             type: "PUT",
             dataType: 'json',
             data: {
-                denominacion: $('#denominacion').val()
+                nombre: $('#nombre').val(),
+                "clasificacion.id": $('#clasificacion').val(),
+                "tipoAnimal.id": $('#tipoAnimal').val(),
+                nPatas: $('#nPatas').val(),
+                esMascota: $('#esMascota').val()
             },
             success: function (respuesta) {
                 // SI LLEGO HASTA AQUÍ QUIERE DECIR
@@ -53,5 +57,5 @@
     });
 
     // EJECUTO LA FUNCIÓN QUE CONSULTARÁ LOS DATOS DEL API
-    cargarDetalle();
+    editar();
 });
